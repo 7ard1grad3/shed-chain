@@ -8,7 +8,7 @@ describe('Blockchain', () => {
     it('starts with genesis block', () => {
         expect(blockchain.chain[0]).toEqual(Block.genesis());
     });
-    it('adds a new block', () => {
+    it('adds a new block and check if it is euqal to given data', () => {
         const data = 'foo';
         blockchain.addBlock(data);
         expect(blockchain.chain[blockchain.chain.length - 1].data).toEqual(data);
