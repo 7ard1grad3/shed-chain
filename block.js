@@ -3,14 +3,14 @@ class Block {
     constructor(timestamp,lasthash,hash,data) {
         /* Init properties */
         this.timestamp = timestamp;
-        this.lasthash = lasthash;
+        this.lastHash = lasthash;
         this.hash = hash;
         this.data = data;
     }
-    toString() {
+    toStringChain() {
         return `Block -
         Timestamp: ${this.timestamp}
-        Last Hash: ${this.lasthash.substring(0,10)}
+        Last Hash: ${this.lastHash.substring(0,10)}
         Hash: ${this.hash.substring(0,10)}
         Data: ${this.data}
         `;
@@ -28,6 +28,11 @@ class Block {
     }
     static hash_block(timestamp, lastHash, data) {
         return SHA256(`${timestamp},${lastHash},${data}`).toString();
+    }
+
+    static blockHash(block) {
+        const {timestamp, lastHash, data} = block;
+        return this.hash_block(timestamp, lastHash, data);
     }
 }
 module.exports = Block;
